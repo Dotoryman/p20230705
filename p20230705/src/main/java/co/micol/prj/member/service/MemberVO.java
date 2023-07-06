@@ -3,6 +3,8 @@ package co.micol.prj.member.service;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +17,8 @@ public class MemberVO {
 	private String memberTel;
 	private String memberAddr;
 	private String memberAuthor;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private Date memberEdate;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private Date memberDdate;
 }

@@ -70,9 +70,30 @@
 	}
 
 	function viewHtml(datas){
-		<!-- 화면 출력 -->
-		document.querySelector('tbody');
+		<!-- 화면 출력 --> //기존화면을 지우고 넘어온 새로운 데이터를 뿌리기
+		document.querySelector('tbody').remove();
+		const tbody = document.createElement('tbody');
+		tbody.innerHTML = datas.map(data => htmlConvert(data)).join('');
+		document.querySelector('table').appendChild(tbody);
 	}
+	
+	function htmlConvert(data){
+		console.log(data);
+		let t = (data.memberDdate == null)? '' : data.memberDate;
+		let str = '<tr>';
+			str += '<tr>';
+		str +=	'<td align="center">' + data.memberId + '</td>';
+		str +=	'<td align="center"> ' + data.memberName + '</td>';
+		str +=	'<td align="center">' + data.memberTel + '</td>';
+		str +=	'<td>' + data.memberAddr + '</td>';
+		str +=	'<td align="center">' + data.memberEdate  + '</td>';
+		str +=	'<td align="center">' + data.memberAuthor + '</td>';
+		str +=	'<td align="center">' + t + '</td>';
+		str +=	'</tr>';
+		return str;
+	}
+	
+	
 </script>
 
 </body>
