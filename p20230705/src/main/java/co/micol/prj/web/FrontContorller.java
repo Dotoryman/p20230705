@@ -14,6 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.micol.prj.MainCommand;
 import co.micol.prj.common.Command;
+import co.micol.prj.member.command.AjaxIdCheck;
+import co.micol.prj.member.command.AjaxMemberSearchList;
+import co.micol.prj.member.command.MemberJoinForm;
+import co.micol.prj.member.command.MemberList;
+import co.micol.prj.member.command.MemberLogin;
+import co.micol.prj.member.command.MemberLoginForm;
+import co.micol.prj.member.command.MemberLogout;
 
 @WebServlet("*.do")
 public class FrontContorller extends HttpServlet {
@@ -27,7 +34,13 @@ public class FrontContorller extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// 호출하는 이름들의 집합
 		map.put("/main.do", new MainCommand()); // 처음 들어오는 페이지
-		
+		map.put("/memberLoginForm.do", new MemberLoginForm()); //로그인 폼 호출
+		map.put("/memberLogin.do", new MemberLogin()); //로그인 처리
+		map.put("/memberLogout.do", new MemberLogout()); //로그아웃 처리
+		map.put("/memberJoinForm.do", new MemberJoinForm()); //회원가입 폼
+		map.put("/ajaxIdCheck.do", new AjaxIdCheck()); //ajax 아이디 중복체크
+		map.put("/memberList.do", new MemberList()); //멤버 목록보기
+		map.put("/ajaxMemberSearchList.do", new AjaxMemberSearchList()); //멤버검색
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,6 +59,7 @@ public class FrontContorller extends HttpServlet {
 				//Ajax 처리
 				response.setContentType("text/html; charset=UTF-8");
 				response.getWriter().append(viewPage.substring(5));
+				return;
 			}
 			viewPage += ".tiles";
 			

@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List<MemberVO> memberSelectList(String key, String val) {
-		return map.memberSelectList();
+		return map.memberSelectList(key, val);
 	}
 
 	@Override
